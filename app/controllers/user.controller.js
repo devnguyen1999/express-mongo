@@ -13,10 +13,29 @@ exports.signUp = (req, res) => {
     password: bcrypt.hashSync(req.body.password, 8),
   });
 
-  user.save((err, user) => {
+  user.save(async (err, user) => {
     if (err) {
       res.status(500).send({ message: err });
       return;
+    }
+    restOfOptions = {
+      to: user.email,
+      subject: "Verify your account",
+    };
+    templateVars = {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      link: "link"
+    }
+    try {
+      await sendMail({
+        template: "verifyAccount",
+        templateVars,
+        ...restOfOptions,
+      });
+    } catch (error) {
+      console.log("error", error);
+      res.status(500).send("Send mail fail.");
     }
     res.send({ message: "User was registered successfully." });
   });

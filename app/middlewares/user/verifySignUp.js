@@ -31,4 +31,4 @@ var verifySignUp = checkSchema({
   },
 });
 
-module.exports = verifySignUp;
+module.exports = { verifySignUp: verifySignUp };

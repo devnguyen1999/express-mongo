@@ -46,4 +46,4 @@ var verifyLogIn = checkSchema({
   },
 });
 
-module.exports = verifyLogIn;
+module.exports = { verifyLogIn: verifyLogIn };
