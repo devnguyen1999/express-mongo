@@ -24,7 +24,6 @@ exports.signUp = (req, res) => {
     };
     templateVars = {
       firstName: user.firstName,
-      lastName: user.lastName,
       link: "link"
     }
     try {
